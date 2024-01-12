@@ -1,0 +1,104 @@
+﻿@page "/"
+
+<PageTitle>Territorios de la congregación La Venta del Astillero</PageTitle>
+
+@using Territorios.Data
+@using Models
+@inject TerritoryService TerritoryService
+
+<h1>Territorios</h1>
+
+<p>Seleccione un territorio.</p>
+
+@if (territories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <select @onchange="(e) => ChangeTerritory(e)">
+        @foreach (var territory in territories)
+        {
+            <option value="@territory.TerritoryId">@territory.Name</option>
+        }        
+    </select>    
+}
+
+
+
+@if (selectedTerritory != null)
+{
+    <p>Predicado por última vez: @(selectedTerritory.LasTimeWorked).</p>
+    <div>
+        <img src="Images/Territorio@(selectedTerritory.TerritoryId).jpg" />
+    </div>
+}
+
+<p>Marque las cuadras que se han trabajado.</p>
+
+@if (territories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (selectedTerritory != null)
+    {
+        if (selectedTerritory.Blocks.All(s => s.Worked))
+        {
+            <button @onclick="ClearAllBlocks">Borrar todas</button>
+            <br />
+        }
+        @foreach (var block in selectedTerritory.Blocks)
+        {
+            <label>Cuadra </label>
+            <label>@block.Id</label>
+            <input type="checkbox" checked="@block.Worked" @onchange="(e) => CheckboxChanged(block, e)">
+            <label>@block.WorkedOn</label><br/>
+        }
+    }
+}
+
+@code {
+    private Territory[]? territories;
+    private Territory? selectedTerritory;
+
+    protected override async Task OnInitializedAsync()
+    {
+        territories = TerritoryService.GetTerritories();
+        selectedTerritory = territories[0];
+    }
+
+    void ChangeTerritory(ChangeEventArgs e)
+    {
+        var selectedId = e.Value.ToString();
+        selectedTerritory = territories.Where(s => s.TerritoryId == int.Parse(selectedId)).Single();
+    }
+
+    void CheckboxChanged(Block currentBlock, ChangeEventArgs e)
+    {
+        var isChecked = (bool)e.Value;
+        currentBlock.Worked = isChecked;
+        if (isChecked)
+        {
+            currentBlock.WorkedOn = DateTime.Now;
+            selectedTerritory.LasTimeWorked = DateTime.Now;
+        }
+        else
+        {
+            currentBlock.WorkedOn = null;
+        }
+        TerritoryService.MarkTerritory(selectedTerritory.TerritoryId, currentBlock.Id, currentBlock.Worked);
+        territories = TerritoryService.GetTerritories();
+    }
+
+    void ClearAllBlocks(EventArgs e)
+    {
+        foreach(var block in selectedTerritory.Blocks)
+        {
+            block.Worked = false;
+            block.WorkedOn = null;
+            TerritoryService.MarkTerritory(selectedTerritory.TerritoryId, block.Id, block.Worked);
+        }
+    }
+}

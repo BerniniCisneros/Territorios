@@ -1,0 +1,38 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Territorios</PageTitle>
+
+@using Models;
+@using Territorios.Data
+@inject TerritoryService TerritoryService
+
+<h1>Territorios</h1>
+
+<p>Seleccione un territorio.</p>
+
+@if (territories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <select @bind="territories">
+        @if (territories != null)
+        {
+            @foreach (var territory in territories)
+            {
+                <option value="@territory.Id">@territory.Name</option>
+            }
+        }
+    </select>
+}
+
+@code {
+    private Territory[]? territories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        territories = TerritoryService.GetTerritories();
+    }
+}

@@ -1,0 +1,41 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+@using Models
+
+<h1>Asignación de territorios</h1>
+
+<JobsContainer Jobs="Jobs" OnStatusUpdated="HandleStatusUpdated">
+    <JobList ListStatus="JobStatuses.Superintendente" AllowedStatuses="@(new JobStatuses[] {})" />
+    <JobList ListStatus="JobStatuses.Alex" AllowedStatuses="@(new JobStatuses[] { })" />
+    <JobList ListStatus="JobStatuses.Tito" AllowedStatuses="@(new JobStatuses[] {  })" />
+</JobsContainer>
+
+<hr />
+<p>Last updated job was: <strong>@lastUpdatedJob</strong></p>
+<hr />
+
+@foreach (var task in Jobs)
+{
+    <p>@task.Description - <strong>@task.Status</strong></p>
+}
+
+@code {
+    List<JobModel> Jobs = new List<JobModel>();
+    string lastUpdatedJob = "";
+
+    protected override void OnInitialized()
+    {
+        Jobs.Add(new JobModel { Id = 1, Description = "Territorio 1", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
+        Jobs.Add(new JobModel { Id = 2, Description = "Territorio 2", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
+        Jobs.Add(new JobModel { Id = 3, Description = "Territorio 3", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
+        Jobs.Add(new JobModel { Id = 4, Description = "Territorio 4", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
+        Jobs.Add(new JobModel { Id = 5, Description = "Territorio 5", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
+    }
+
+    void HandleStatusUpdated(JobModel updatedJob)
+    {
+        lastUpdatedJob = updatedJob.Description;
+    }
+}
