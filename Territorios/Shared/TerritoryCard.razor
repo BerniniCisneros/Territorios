@@ -1,0 +1,17 @@
+﻿@using Models
+<li class="draggable" draggable="true" title="@Territory.Name"
+    @ref=ReferenceToInputControl
+@ondragstart="@(() => HandleDragStart(Territory))">
+    <p class="description">@Territory.Name</p>
+</li>
+
+@code {
+    [CascadingParameter] TerritoriesContainer Container { get; set; }
+    [Parameter] public Models.Territory Territory { get; set; }
+    ElementReference ReferenceToInputControl;
+
+    private void HandleDragStart(Models.Territory selectedTerritory)
+    {
+        Container.Payload = selectedTerritory;
+    }
+}

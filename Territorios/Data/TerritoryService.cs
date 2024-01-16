@@ -32,10 +32,42 @@ namespace Territorios.Data
                 return null;
             }
         }
+
+        private IMongoCollection<Captain> GetCaptainsCollection()
+        {
+
+
+            var settings = MongoClientSettings.FromConnectionString(connectionUri);
+
+            // Set the ServerApi field of the settings object to Stable API version 1
+            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+
+            // Create a new client and connect to the server
+            var client = new MongoClient(settings);
+
+            // Send a ping to confirm a successful connection
+            try
+            {
+                var collection = client.GetDatabase("emaily").GetCollection<Captain>("Capitanes");
+                return collection;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
         public Territory[] GetAllTerritories()
         {
             var collection = GetTerritoriesCollection();
-            return collection.Find(s => s.Blocks.Length > 0).ToList().ToArray();
+            return collection.Find(s => s.TerritoryId > 0).ToList().ToArray();
+        }
+
+        public Captain[] GetAllCaptains()
+        {
+            var collection = GetCaptainsCollection();
+            return collection.Find(s => s.CaptainId > 0).ToList().ToArray();
         }
 
         public void UpdateTerritory(int territoryId, int blockId, bool worked)
@@ -62,6 +94,18 @@ namespace Territorios.Data
             var collection = GetTerritoriesCollection();
             collection.UpdateOne(filter, update);
         }
+
+        public void UpdateTerritoryAssignedTo(int territoryId, string assignedTo)
+        {
+            var territory = this.GetAllTerritories().Where(s => s.TerritoryId == territoryId).Single();
+            territory.AssignedTo = assignedTo;
+            var filter = Builders<Territory>.Filter
+            .Eq(s => s.TerritoryId, territoryId);
+            var update = Builders<Territory>.Update
+                .Set(s => s.AssignedTo, assignedTo);
+            var collection = GetTerritoriesCollection();
+            collection.UpdateOne(filter, update);
+        }
     }
     public class TerritoryService
     {
@@ -74,9 +118,19 @@ namespace Territorios.Data
         {
             return repository.GetAllTerritories();
         }
+
+        public Captain[] GetCaptains()
+        {
+            return repository.GetAllCaptains();
+        }
         public void MarkTerritory(int territoryId, int blockId, bool worked)
         {
             repository.UpdateTerritory(territoryId, blockId, worked);
+        }
+
+        public void AssignTerritory(int territoryId, string assignedTo)
+        {
+            repository.UpdateTerritoryAssignedTo(territoryId, assignedTo);
         }
     }
 }

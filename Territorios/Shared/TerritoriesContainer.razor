@@ -1,0 +1,30 @@
+﻿@using Models
+@using Territorios.Data
+
+@inject TerritoryService TerritoryService
+<div class="territories-container">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter] public Territory[] Territories { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback<Territory> OnAssignedToUpdated { get; set; }
+
+    public Territory Payload { get; set; }
+
+    public async Task UpdateTerritoryAsync(string assignedTo)
+    {
+        var territory = Territories.SingleOrDefault(x => x.TerritoryId == Payload.TerritoryId);
+
+        if (territory != null)
+        {
+            territory.AssignedTo = assignedTo;
+            territory.LasTimeWorked = DateTime.Now;
+            TerritoryService.AssignTerritory(territory.TerritoryId, assignedTo);
+            await OnAssignedToUpdated.InvokeAsync(Payload);
+        }        
+    }
+}

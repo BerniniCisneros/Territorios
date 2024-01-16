@@ -9,5 +9,6 @@ namespace Models
         public string Name { get; set; }
         public Block[] Blocks { get; set; }
         public DateTime? LasTimeWorked { get; set; }
+        public string AssignedTo { get; set; }
     }
 }

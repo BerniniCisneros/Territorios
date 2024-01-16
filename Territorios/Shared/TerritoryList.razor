@@ -1,0 +1,55 @@
+﻿@using Models
+@using Territorios.Data
+
+@inject TerritoryService TerritoryService
+<div class="territory-status">
+    <h3>@CaptainName</h3>
+
+    <ul class="dropzone @dropClass"
+        ondragover="event.preventDefault();"
+        ondragstart="event.dataTransfer.setData('', event.target.id);"
+        @ondrop="HandleDrop"
+        @ondragenter="HandleDragEnter"
+        @ondragleave="HandleDragLeave">
+
+        @foreach (var territory in Territories)
+        {
+            <TerritoryCard Territory="territory" />
+        }
+
+    </ul>
+</div>
+
+@code {
+
+    [CascadingParameter] TerritoriesContainer Container { get; set; }
+    [Parameter] public string CaptainName { get; set; }
+
+    List<Models.Territory> Territories = new();
+    string dropClass = "";
+
+    protected override void OnParametersSet()
+    {
+        Territories.Clear();
+        Territories.AddRange(Container.Territories.Where(x => x.AssignedTo == CaptainName));
+    }
+
+    private void HandleDragEnter()
+    {
+        if (CaptainName == Container.Payload.AssignedTo) return;
+
+        dropClass = "can-drop";
+    }
+
+    private void HandleDragLeave()
+    {
+        dropClass = "";
+    }
+
+    private async Task HandleDrop()
+    {
+        dropClass = "";
+
+        await Container.UpdateTerritoryAsync(CaptainName);
+    }
+}

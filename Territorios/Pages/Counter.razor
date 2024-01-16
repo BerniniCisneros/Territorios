@@ -3,39 +3,42 @@
 <PageTitle>Counter</PageTitle>
 
 @using Models
+@using Territorios.Data
+
+@inject TerritoryService TerritoryService
 
 <h1>Asignación de territorios</h1>
 
-<JobsContainer Jobs="Jobs" OnStatusUpdated="HandleStatusUpdated">
-    <JobList ListStatus="JobStatuses.Superintendente" AllowedStatuses="@(new JobStatuses[] {})" />
-    <JobList ListStatus="JobStatuses.Alex" AllowedStatuses="@(new JobStatuses[] { })" />
-    <JobList ListStatus="JobStatuses.Tito" AllowedStatuses="@(new JobStatuses[] {  })" />
-</JobsContainer>
+<TerritoriesContainer Territories="territories" OnAssignedToUpdated="HandleStatusUpdated">
+    @foreach (var captain in captains)
+    {
+        <TerritoryList CaptainName="@(captain.Name)" />
+    }
+</TerritoriesContainer>
 
 <hr />
-<p>Last updated job was: <strong>@lastUpdatedJob</strong></p>
+<p>El último territorio asignado fue: <strong>@lastUpdatedTerritory</strong></p>
 <hr />
 
-@foreach (var task in Jobs)
+@foreach (var territory in territories)
 {
-    <p>@task.Description - <strong>@task.Status</strong></p>
+    <p>@territory.Name - <strong>@territory.AssignedTo</strong></p>
 }
 
 @code {
-    List<JobModel> Jobs = new List<JobModel>();
-    string lastUpdatedJob = "";
+    Captain[] captains;
+    Territory[] territories;
+    string lastUpdatedTerritory = "";
 
     protected override void OnInitialized()
     {
-        Jobs.Add(new JobModel { Id = 1, Description = "Territorio 1", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
-        Jobs.Add(new JobModel { Id = 2, Description = "Territorio 2", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
-        Jobs.Add(new JobModel { Id = 3, Description = "Territorio 3", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
-        Jobs.Add(new JobModel { Id = 4, Description = "Territorio 4", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
-        Jobs.Add(new JobModel { Id = 5, Description = "Territorio 5", Status = JobStatuses.Superintendente, LastUpdated = DateTime.Now });
+        captains = TerritoryService.GetCaptains();
+        territories = TerritoryService.GetTerritories();
     }
 
-    void HandleStatusUpdated(JobModel updatedJob)
+    void HandleStatusUpdated(Territory territory)
     {
-        lastUpdatedJob = updatedJob.Description;
+        lastUpdatedTerritory = territory.Name;
+        territories = TerritoryService.GetTerritories();
     }
 }
