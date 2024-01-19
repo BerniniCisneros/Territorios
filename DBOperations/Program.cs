@@ -12,7 +12,7 @@ settings.ServerApi = new ServerApi(ServerApiVersion.V1);
 // Create a new client and connect to the server
 var client = new MongoClient(settings);
 
-Territory[] Territories = new Territory[15]
+Territory[] Territories = new Territory[]
         {
             new Territory
             {
@@ -487,49 +487,633 @@ Territory[] Territories = new Territory[15]
                 TerritoryId = 5,
                 Name = "Cinco",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 9,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 10,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 11,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
                 TerritoryId = 6,
                 Name = "Seis",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 9,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 10,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 11,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 12,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 13,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
                 TerritoryId = 7,
                 Name = "Siete",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 9,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 10,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
                 TerritoryId = 8,
                 Name = "Ocho",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 9,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 10,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 11,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 12,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 13,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 14,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 15,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 16,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
                 TerritoryId = 9,
                 Name = "Nueve",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 9,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 10,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 11,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 12,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 13,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 14,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 15,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 16,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 17,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 18,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 19,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
                 TerritoryId = 10,
                 Name = "Diez",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
                 TerritoryId = 11,
                 Name = "Once",
                 AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
+                Blocks = new Block[]
+                {
+                    new Block
+                    {
+                        Id = 1,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 2,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 3,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 4,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 5,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 6,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 7,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 8,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 9,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 10,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 11,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 12,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 13,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 14,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 15,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 16,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 17,
+                        WorkedOn = null,
+                        Worked = false,
+                    },
+                    new Block
+                    {
+                        Id = 18,
+                        WorkedOn = null,
+                        Worked = false,
+                    }
+                }
             },
             new Territory
             {
@@ -542,20 +1126,6 @@ Territory[] Territories = new Territory[15]
             {
                 TerritoryId = 13,
                 Name = "Trece",
-                AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
-            },
-            new Territory
-            {
-                TerritoryId = 14,
-                Name = "Catorce",
-                AssignedTo = "Tito Esquivel",
-                Blocks = Array.Empty<Block>()
-            },
-            new Territory
-            {
-                TerritoryId = 15,
-                Name = "Quince",
                 AssignedTo = "Tito Esquivel",
                 Blocks = Array.Empty<Block>()
             }
@@ -603,12 +1173,6 @@ Captain[] captains = new Captain[]
     {
         CaptainId = 7,
         Name = "Luis Fernando Valdez",
-        Overseer = false
-    },
-    new Captain
-    {
-        CaptainId = 7,
-        Name = "Julio López",
         Overseer = false
     }
 };
